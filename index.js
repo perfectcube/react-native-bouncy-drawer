@@ -90,20 +90,54 @@ export default class Header extends Component {
         const openButtonContent = <MAIcon name="menu" size={defaultOpenButtonIconSize} color={defaultOpenButtonIconColor} />
         const closeButtonContent = <MAIcon name="close" size={defaultCloseButtonIconSize} color={defaultCloseButtonIconColor} />
         const openButton = (
-            <View style={{ ...openButtonStyle, position: 'absolute', left: 8, top: openButtonPosition == 'left' ? 14 : width - 40, transform: [{ rotate: '90deg' }] }}>
+            <View style={{
+                ...openButtonStyle,
+                position: 'absolute',
+                left: 8,
+                top: openButtonPosition == 'left' ? 14 : width - 40,
+                transform: [{ rotate: '90deg' }]
+            }}>
                 <TouchableOpacity onPress={this.onToggle}>
                     {this.props.openButtonContent || openButtonContent}
                 </TouchableOpacity>
             </View>
         )
+
         const closeButton = (
-            <TouchableOpacity onPress={this.onToggle} style={{ ...closeButtonStyle, marginLeft: closeButtonPosition == 'left' ? 14 : width - 42, marginTop: Platform.OS == 'ios' ? 28 : 18 }}>
+            <TouchableOpacity onPress={this.onToggle} style={{
+                ...closeButtonStyle,
+                marginLeft: closeButtonPosition == 'left' ? 14 : width - 42,
+                marginTop: Platform.OS == 'ios' ? 28 : 18
+            }}>
                 {this.props.closeButtonContent || closeButtonContent}
             </TouchableOpacity>
         )
+
         const titleComponent = title ? (
             <View style={{ transform: [{ rotate: '90deg' }] }}>
-                <Text style={{ fontSize: 18, color: '#000', ...titleStyle, width: width + headerHeight / 2, textAlign: 'center', marginTop: Platform.OS == 'ios' ? 15 : 5 }}>{title}</Text>
+                <View style={{
+                    flexDirection:'row',
+                    flexWrap:'nowrap',
+                    // justifyContent:'space-evenly',
+                    marginLeft: 50,
+                }}>
+                  {this.props.titlePrefix}
+                  <Text style={{
+                      // borderWidth: 1,
+                      // borderColor: 'blue',
+                      fontSize: 18,
+                      color: '#000',
+                      ...titleStyle,
+                      // 24 is our button width so we remove
+                      // 1 width (24) for the outside margin
+                      // plus the number of buttons we have in the suffix/prefix * the button width (24)
+                      width: width - ((24 * 2) + 24 + 50), //+ (headerHeight / 2) - 100,
+                      // height: 28,
+                      textAlign: 'center',
+                      marginTop: Platform.OS == 'ios' ? 20 : 5,
+                  }}>{title}</Text>
+                  {this.props.titleSuffix}
+                </View>
             </View>
         ) : null
         return (
