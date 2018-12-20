@@ -141,19 +141,42 @@ export default class Header extends Component {
             </View>
         ) : null
         return (
-            <Animated.View style={{ position: 'absolute', top: 0, left: 0, maxHeight: open ? height : headerHeight + 5, overflow: 'hidden' }}>
-                <Animated.View style={{ height: height * 2 + headerHeight, width: width * 2 + headerHeight, transform: [{ translateY: paddingTop }, { translateX: paddingLeft }, { rotate: rotation }] }}>
+            <Animated.View style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                maxHeight: open ? height : headerHeight + 5,
+                overflow: 'hidden'
+              }}>
+                <Animated.View style={{
+                    height: height * 2 + headerHeight,
+                    width: width * 2 + headerHeight,
+                    transform: [
+                      { translateY: paddingTop },
+                      { translateX: paddingLeft },
+                      { rotate: rotation }
+                    ]
+                  }}>
                     <View style={{ flex: 1 }} />
                     <View row style={{ flex: 1 }}>
                         <View style={{ flex: 1 }} />
                         <View style={{ width: headerHeight }}>
-                            <View style={{ ...styles.header, ...styles.closedHeader, ...closedHeaderStyle, flex: 1, height: width }}>
+                            <View style={{
+                              ...styles.header,
+                              ...styles.closedHeader,
+                              ...closedHeaderStyle,
+                              flex: 1,
+                              height: width
+                            }}>
                                 {titleComponent}
                                 {openButton}
                             </View>
                         </View>
                         <View style={{ flex: 1, backgroundColor: "#fff" }}>
-                            <View row style={{ height: headerHeight, ...openedHeaderStyle }}>
+                            <View row style={{
+                              height: headerHeight,
+                              ...openedHeaderStyle
+                            }}>
                                 {closeButton}
                                 {openedHeaderContent}
                             </View>
